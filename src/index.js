@@ -13,13 +13,27 @@ console.log("hello",process.env) // remove this after you've confirmed it is wor
 const app=express()
 
 connectdb()
+.then(()=>{
+    app.on("error",(error)=>{
+        console.log('error',error)
+        throw error
+        
+        
+    })
+    app.listen(process.env.PORT || 8000,()=>{
+        console.log(`server is listening at PORT:${process.env.PORT}`)
+    })
+})
+.catch((err)=>{
+    console.log("mongodb connection error",err)
+})
 
 // (async ()=>{
 //     try {
 //         await mongoose.connect(`${process.env.mongodb_url}/${db_name}`)
 //         app.on("error",(error)=>{
 //             console.log("error",error)
-//             throw err
+//             throw error
 //         })
 //         app.listen(process.env.PORT,()=>{
 //             console.log(`app is listening at ${process.env.PORT}`)
