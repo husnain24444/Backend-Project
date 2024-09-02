@@ -20,7 +20,7 @@ connectdb()
         
         
     })
-    app.listen(process.env.PORT || 8000,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log(`server is listening at PORT:${process.env.PORT}`)
     })
 })
